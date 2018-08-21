@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetTwitterWS", "GetTwitterWS\GetTwitterWS.csproj", "{CBDDD2C4-43D5-4DF7-83E4-68547C1D0D63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetTwitterTeste", "GetTwitterTeste\GetTwitterTeste.csproj", "{26FF6A94-1A79-4F92-8788-F9EB962464D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetTwitterLib", "GetTwitterLib\GetTwitterLib.csproj", "{6952D282-4479-4185-A114-6039E467FCC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBDDD2C4-43D5-4DF7-83E4-68547C1D0D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDDD2C4-43D5-4DF7-83E4-68547C1D0D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDDD2C4-43D5-4DF7-83E4-68547C1D0D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBDDD2C4-43D5-4DF7-83E4-68547C1D0D63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26FF6A94-1A79-4F92-8788-F9EB962464D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26FF6A94-1A79-4F92-8788-F9EB962464D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26FF6A94-1A79-4F92-8788-F9EB962464D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26FF6A94-1A79-4F92-8788-F9EB962464D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6952D282-4479-4185-A114-6039E467FCC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6952D282-4479-4185-A114-6039E467FCC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6952D282-4479-4185-A114-6039E467FCC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6952D282-4479-4185-A114-6039E467FCC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAAE199B-A50B-4CDA-A751-DE2EBC07E751}
+	EndGlobalSection
+EndGlobal
