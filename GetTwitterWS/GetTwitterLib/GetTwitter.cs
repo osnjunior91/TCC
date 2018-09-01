@@ -12,10 +12,10 @@ namespace GetTwitterLib
 
         public void GetAllTwitter()
         {
-            using (var httpClient = new GeneralHttpClient())
+            /*using (var httpClient = new GeneralHttpClient())
             {
                 var teste = httpClient.GetAsync<object>("search/tweets.json?q=bolsonaro&result_type=popular");
-            }
+            }*/
 
         }
     }
