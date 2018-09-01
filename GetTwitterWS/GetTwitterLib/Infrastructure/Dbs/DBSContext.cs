@@ -1,10 +1,5 @@
 ﻿using GetTwitterLib.Model;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GetTwitterLib.Infrastructure.Dbs
 {
@@ -18,11 +13,11 @@ namespace GetTwitterLib.Infrastructure.Dbs
                 _database = client.GetDatabase("Colection");
         }
 
-        public IMongoCollection<Twitter> Twitter
+        public IMongoCollection<TwitterObject> Twitter
         {
             get
             {
-                return _database.GetCollection<Twitter>("NomeTabela");
+                return _database.GetCollection<TwitterObject>("NomeTabela");
             }
         }
     }

@@ -1,27 +1,29 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace GetTwitterLib.Infrastructure.Http
 {
-    public class GeneralHttpClient
+    public class GeneralHttpClient : IDisposable
     {
-        private static HttpClient _client = null;
-        public static HttpClient ClientHttp
+        public void Dispose()
+        {
+            if (_client != null)
+                _client.Dispose();
+        }
+        //private HttpClient _client = null;
+        private HttpClient _client
         {
             get
             {
-                if (_client == null)
-                {
-                    _client = new HttpClient();
-                }
-
-                return _client;
+                var client = new HttpClient();
+                return client;
             }
         }
 
-        public static async Task<List<T>> GetAsync<T>(string url)
+        public async Task<List<T>> GetAsync<T>(string url)
         {
             try
             {
@@ -39,7 +41,7 @@ namespace GetTwitterLib.Infrastructure.Http
             }
         }
 
-        public static async Task<T> GetUniqueAsync<T>(string url)
+        public async Task<T> GetUniqueAsync<T>(string url)
         {
             try
             {
@@ -56,5 +58,7 @@ namespace GetTwitterLib.Infrastructure.Http
                 throw;
             }
         }
+
+
     }
 }

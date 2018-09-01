@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace GetTwitterLib.Model
 {
-    public class Twitter
+    public class TwitterObject
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         [BsonElement(elementName: "_id")]
-        [JsonProperty("")]
+        [JsonProperty("id_str")]
         public string id { get; set; }
         [BsonElement(elementName: "texto")]
-        [JsonProperty("")]
+        [JsonProperty("text")]
         public string texto { get; set; }
         [BsonElement(elementName: "latitude")]
         [JsonProperty("")]
@@ -25,7 +25,13 @@ namespace GetTwitterLib.Model
         [JsonProperty("")]
         public double longitude { get; set; }
         [BsonElement(elementName: "dataHora")]
-        [JsonProperty("")]
+        [JsonProperty("created_at")]
         public DateTime dataHora { get; set; }
+    }
+
+    public class TwitterData
+    {
+        [JsonProperty("statuses")]
+        public List<TwitterObject> twitterData { get; set; }
     }
 }

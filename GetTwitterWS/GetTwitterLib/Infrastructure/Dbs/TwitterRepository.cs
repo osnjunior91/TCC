@@ -22,7 +22,7 @@ namespace GetTwitterLib.Infrastructure.Dbs
             }
         }
 
-        public static async Task SaveTwitter(Twitter twitter)
+        public static async Task SaveTwitter(TwitterObject twitter)
         {
             try
             {

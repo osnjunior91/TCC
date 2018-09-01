@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GetTwitterLib;
+using GetTwitterLib.Infrastructure.Twitter;
+using System;
+using System.Configuration;
 
 namespace GetTwitterTeste
 {
@@ -11,6 +10,11 @@ namespace GetTwitterTeste
         static void Main(string[] args)
         {
             Console.WriteLine("********** Teste de Serviço**********");
+
+            using (var getTwitter = new ServiceTwitter())
+            {
+                var teste = getTwitter.GetTwitter();
+            }
 
             Console.ReadKey();
         }
