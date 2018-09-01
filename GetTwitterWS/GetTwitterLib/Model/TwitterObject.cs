@@ -8,25 +8,10 @@ using System.Threading.Tasks;
 
 namespace GetTwitterLib.Model
 {
-    public class TwitterObject
+    public class TwitterObject : TweetBase
     {
-        [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        [BsonElement(elementName: "_id")]
-        [JsonProperty("id_str")]
-        public string id { get; set; }
-        [BsonElement(elementName: "texto")]
-        [JsonProperty("text")]
-        public string texto { get; set; }
-        [BsonElement(elementName: "latitude")]
-        [JsonProperty("")]
-        public double latitude { get; set; }
-        [BsonElement(elementName: "longitude")]
-        [JsonProperty("")]
-        public double longitude { get; set; }
-        [BsonElement(elementName: "dataHora")]
-        [JsonProperty("created_at")]
-        public DateTime dataHora { get; set; }
+        [JsonProperty("retweeted_status")]
+        public RetweetedData retweeted { get; set; }
     }
 
     public class TwitterData
@@ -34,4 +19,26 @@ namespace GetTwitterLib.Model
         [JsonProperty("statuses")]
         public List<TwitterObject> twitterData { get; set; }
     }
+
+    public class RetweetedData : TweetBase { }
+}
+
+public class TweetBase
+{
+    [BsonId]
+    [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+    [BsonElement(elementName: "_id")]
+    [JsonProperty("id_str")]
+    public string id { get; set; }
+    [BsonElement(elementName: "texto")]
+    [JsonProperty("full_text")]
+    public string texto { get; set; }
+    [BsonElement(elementName: "dataHora")]
+    [JsonProperty("created_at")]
+    public string dataHora { get; set; }
+    [BsonElement(elementName: "coordinates")]
+    [JsonProperty("coordinates")]
+    public List<List<Double>> coordinates { get; set; }
+}
+
 }
