@@ -32,6 +32,7 @@ namespace GetTwitterLib.Model
             this.id = twitter.id;
             this.texto = twitter.texto;
             this.coordinates = twitter.coordinates;
+            this.textoSearch = twitter.textoSearch;
             this.dataHora = DateTime.ParseExact(twitter.data, Const_TwitterDateTemplate, new System.Globalization.CultureInfo("en-US"));
         }
     }
@@ -49,6 +50,8 @@ namespace GetTwitterLib.Model
         [BsonElement(elementName: "coordinates")]
         [JsonProperty("coordinates")]
         public List<List<Double>> coordinates { get; set; }
+        [BsonElement(elementName: "textSearch")]
+        public string textoSearch { get; set; }
     }
 
 }

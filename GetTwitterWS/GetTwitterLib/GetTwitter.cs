@@ -20,7 +20,7 @@ namespace GetTwitterLib
                 using (var getTwitter = new ServiceTwitter())
                 {
                     var twitter = getTwitter.GetTwitter(param);
-                    SavedTwitter(twitter);
+                    SavedTwitter(twitter, param);
                 }
             }
             catch (Exception)
@@ -30,7 +30,7 @@ namespace GetTwitterLib
             }
         }
 
-        private void SavedTwitter(List<TwitterObject> twitter)
+        private void SavedTwitter(List<TwitterObject> twitter, string param)
         {
             try
             {
@@ -39,7 +39,10 @@ namespace GetTwitterLib
                     foreach (var item in twitter)
                     {
                         if (!twitterRepository.ExistsTwitter(item.id))
+                        {
+                            item.textoSearch = param;
                             twitterRepository.SaveTwitter(new TweetedSave(item));
+                        }
                     }
                 }
             }
