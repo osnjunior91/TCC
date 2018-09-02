@@ -57,5 +57,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GetTwitterLib\GetTwitterLib.csproj">
+      <Project>{6952d282-4479-4185-a114-6039e467fcc5}</Project>
+      <Name>GetTwitterLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
