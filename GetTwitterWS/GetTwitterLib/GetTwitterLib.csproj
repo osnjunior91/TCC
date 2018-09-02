@@ -129,12 +129,16 @@
     <Compile Include="Infrastructure\Dbs\TwitterRepository.cs" />
     <Compile Include="Infrastructure\Http\GeneralHttpClient.cs" />
     <Compile Include="Infrastructure\TwitterLib\ServiceTwitter.cs" />
+    <Compile Include="Model\Candidatos.cs" />
     <Compile Include="Model\TwitterObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="dados.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

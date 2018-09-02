@@ -1,0 +1,28 @@
+{
+  "candidatos": [
+    {
+      "nome": "Jair Bolsonaro",
+      "partido": "PSL",
+      "legenda": 17,
+      "reference": ["bolsonaro", "bolsonaro2018", "jairbolsonaro"]
+    },
+    {
+      "nome": "Fernando Haddad",
+      "partido": "PT",
+      "legenda": 13,
+      "reference": ["haddad", "fernandohaddad", "haddadpresidente"]
+    },
+    {
+      "nome": "Ciro Gomes",
+      "partido": "PDT",
+      "legenda": 12,
+      "reference": ["cirogomes", "ciro12", "ciropresidente"]
+    },
+    {
+      "nome": "João Amoedo",
+      "partido": "Partido Novo",
+      "legenda": 30,
+      "reference": ["amoedo", "joaoamoedo", "vemcomjoao30"]
+    }
+  ]
+}

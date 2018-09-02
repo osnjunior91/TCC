@@ -2,6 +2,7 @@
 using GetTwitterLib.Infrastructure.Twitter;
 using System;
 using System.Configuration;
+using System.IO;
 
 namespace GetTwitterTeste
 {
@@ -15,7 +16,7 @@ namespace GetTwitterTeste
             {
                 using (var getTwitter = new GetTwitter())
                 {
-                    getTwitter.GetAllTwitter("bolsonaro");
+                    getTwitter.GetCandidatos();
                 }
             }
             catch (Exception ex)
