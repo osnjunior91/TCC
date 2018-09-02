@@ -1,32 +1,43 @@
 ﻿using GetTwitterLib.Model;
+using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GetTwitterLib.Infrastructure.Dbs
 {
-    public class TwitterRepository
-    {
-        private static DBSContext _context = null;
-        public static DBSContext Context {
-            get
-            {
-                if (_context == null)
-                {
-                    _context = new DBSContext();
-                }
+    public class TwitterRepository : BaseClass
 
-                return _context;
-            }
+    {
+        private readonly DBSContext _context = null;
+        public TwitterRepository()
+        {
+            _context = new DBSContext();
+        }
+        
+        public override void Dispose()
+        {
+            if (_context != null)
+                _context.Dispose();
+            base.Dispose();
         }
 
-        public static async Task SaveTwitter(TwitterObject twitter)
+        public void SaveTwitter(TweetedSave twitter)
         {
             try
             {
-                await _context.Twitter.InsertOneAsync(twitter);
+                _context.Twitter.InsertOneAsync(twitter);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public bool ExistsTwitter(string id)
+        {
+            try
+            {
+                return _context.Twitter.Find(x => x.id == id).Any();
             }
             catch (Exception)
             {

@@ -11,11 +11,11 @@ namespace GetTwitterTeste
         {
             Console.WriteLine("********** Teste de Serviço**********");
 
-            using (var getTwitter = new ServiceTwitter())
+            using (var getTwitter = new GetTwitter())
             {
-                var teste = getTwitter.GetTwitter();
+                getTwitter.GetAllTwitter("bolsonaro");
             }
-
+            Console.WriteLine("********** Fim de execução **********");
             Console.ReadKey();
         }
     }

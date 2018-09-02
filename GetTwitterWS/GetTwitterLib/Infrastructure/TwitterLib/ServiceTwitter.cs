@@ -4,11 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using Tweetinvi;
-using Tweetinvi.Core.Enum;
-using Tweetinvi.Core.Interfaces.DTO;
-using Tweetinvi.Core.Interfaces.DTO.QueryDTO;
-using Tweetinvi.Core.Parameters;
-using Tweetinvi.Core.Parameters;
 
 namespace GetTwitterLib.Infrastructure.Twitter
 {
@@ -19,18 +14,16 @@ namespace GetTwitterLib.Infrastructure.Twitter
         {
         }
 
-        public List<TwitterObject> GetTwitter()
+        public List<TwitterObject> GetTwitter(string param)
         {
+            string url = $"https://api.twitter.com/1.1/search/tweets.json?q={param}&result_type=recent&tweet_mode=extended&count=100";
             Auth.SetUserCredentials(ConfigurationManager.AppSettings["CustomerKey"],
                     ConfigurationManager.AppSettings["CustomerKeySecret"],
                     ConfigurationManager.AppSettings["AcessToken"],
                     ConfigurationManager.AppSettings["AcessTokenSecret"]);
-
-            var results = TwitterAccessor.GetQueryableJsonObjectFromGETQuery("https://api.twitter.com/1.1/search/tweets.json?q=bolsonaro&result_type=recent&tweet_mode=extended").ToString();
-
-            TwitterData titterData = JsonConvert.DeserializeObject<TwitterData>(results);
-
-            return null;
+            var results = TwitterAccessor.GetQueryableJsonObjectFromGETQuery(url).ToString();
+            TwitterData twitterData = JsonConvert.DeserializeObject<TwitterData>(results);
+            return twitterData.twitterData.FindAll(x => x.retweeted == null);
         }
 
     }

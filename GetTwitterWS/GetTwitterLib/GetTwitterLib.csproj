@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GetTwitter.cs" />
+    <Compile Include="Infrastructure\BaseClass.cs" />
     <Compile Include="Infrastructure\Dbs\DBSContext.cs" />
     <Compile Include="Infrastructure\Dbs\TwitterRepository.cs" />
     <Compile Include="Infrastructure\Http\GeneralHttpClient.cs" />
