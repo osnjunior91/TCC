@@ -15,24 +15,39 @@ namespace GetTwitterLib
         }
         public void GetAllTwitter(string param)
         {
-            using (var getTwitter = new ServiceTwitter())
+            try
             {
-                var twitter = getTwitter.GetTwitter(param);
-                SavedTwitter(twitter);
+                using (var getTwitter = new ServiceTwitter())
+                {
+                    var twitter = getTwitter.GetTwitter(param);
+                    SavedTwitter(twitter);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 
         private void SavedTwitter(List<TwitterObject> twitter)
         {
-            using (var twitterRepository = new TwitterRepository())
+            try
             {
-                foreach (var item in twitter)
+                using (var twitterRepository = new TwitterRepository())
                 {
-                    if (!twitterRepository.ExistsTwitter(item.id))
-                        twitterRepository.SaveTwitter(new TweetedSave(item));
+                    foreach (var item in twitter)
+                    {
+                        if (!twitterRepository.ExistsTwitter(item.id))
+                            twitterRepository.SaveTwitter(new TweetedSave(item));
+                    }
                 }
             }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
     }
 }
