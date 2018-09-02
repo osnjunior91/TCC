@@ -47,11 +47,21 @@ namespace GetTwitterLib.Model
         public string texto { get; set; }
         [BsonElement(elementName: "dataHora")]
         public DateTime dataHora { get; set; }
+        [BsonIgnoreIfNull]
         [BsonElement(elementName: "coordinates")]
         [JsonProperty("coordinates")]
-        public List<List<Double>> coordinates { get; set; }
+        public Coordinate coordinates { get; set; }
         [BsonElement(elementName: "textSearch")]
         public string textoSearch { get; set; }
     }
+
+    public class Coordinate
+    {
+        [JsonProperty("type")]
+        public string type { get; set; }
+        [JsonProperty("coordinates")]
+        public List<Double> coordinates { get; set; }
+    }
+
 
 }
