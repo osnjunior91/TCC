@@ -39,6 +39,7 @@
             // 
             // GetTwitterData
             // 
+            this.GetTwitterData.Description = "Servi;o responsavel por busca de twittes";
             this.GetTwitterData.DisplayName = "TCC - GetTwitterData";
             this.GetTwitterData.ServiceName = "TCC - GetTwitterData";
             this.GetTwitterData.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
