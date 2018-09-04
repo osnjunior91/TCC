@@ -16,9 +16,9 @@ namespace GetTwitterLib.Infrastructure.Dbs
 
         public DBSContext()
         {
-            var client = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
+            var client = new MongoClient("mongodb://localhost:27017");
             if (client != null)
-                _database = client.GetDatabase(ConfigurationManager.AppSettings["Database"]);
+                _database = client.GetDatabase("TCC");
         }
         public IMongoCollection<TweetedSave> Twitter
         {

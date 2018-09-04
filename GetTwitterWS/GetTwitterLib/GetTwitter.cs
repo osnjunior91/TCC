@@ -36,7 +36,7 @@ namespace GetTwitterLib
         {
             try
             {
-                using (StreamReader r = new StreamReader("dados.json"))
+                using (StreamReader r = new StreamReader(@"c:\DadosTcc\dados.json"))
                 {
                     string json = r.ReadToEnd();
                     var candidatos = JsonConvert.DeserializeObject<Candidatos>(json);

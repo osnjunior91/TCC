@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
-            this.GetTwitterData = new System.ServiceProcess.ServiceInstaller();
+            this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
             // 
             // serviceProcessInstaller1
             // 
@@ -37,24 +37,24 @@
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
             // 
-            // GetTwitterData
+            // serviceInstaller1
             // 
-            this.GetTwitterData.Description = "Servi;o responsavel por busca de twittes";
-            this.GetTwitterData.DisplayName = "TCC - GetTwitterData";
-            this.GetTwitterData.ServiceName = "TCC - GetTwitterData";
-            this.GetTwitterData.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+            this.serviceInstaller1.Description = "Servi;o responsavel por busca de twittes";
+            this.serviceInstaller1.DisplayName = "TCC - GetTwitterData";
+            this.serviceInstaller1.ServiceName = "TCC - GetTwitterData";
+            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
             this.serviceProcessInstaller1,
-            this.GetTwitterData});
+            this.serviceInstaller1});
 
         }
 
         #endregion
 
         private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
-        private System.ServiceProcess.ServiceInstaller GetTwitterData;
+        private System.ServiceProcess.ServiceInstaller serviceInstaller1;
     }
 }
