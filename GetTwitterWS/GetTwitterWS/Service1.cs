@@ -23,6 +23,13 @@ namespace GetTwitterWS
             timer1 = new Timer(new TimerCallback(GetTwitter), null, 0, 300000);
         }
 
+        internal void TestStartupAndStop(string[] args)
+        {
+            this.OnStart(args);
+            Console.ReadLine();
+            this.OnStop();
+        }
+
         protected override void OnStop()
         {
             if (!File.Exists(arquivoConexaoFechada))

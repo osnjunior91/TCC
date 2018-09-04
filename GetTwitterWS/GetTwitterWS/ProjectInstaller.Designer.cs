@@ -39,8 +39,8 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.Description = "Servi;o responsavel por busca de twittes";
-            this.serviceInstaller1.DisplayName = "TCC - GetTwitterData";
+            this.serviceInstaller1.Description = "Serviço responsavel por busca de twittes";
+            this.serviceInstaller1.DisplayName = "GetTwitterData";
             this.serviceInstaller1.ServiceName = "TCC - GetTwitterData";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
