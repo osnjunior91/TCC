@@ -12,28 +12,28 @@ namespace GetTwitterWS
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main()
-        {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
-            {
-                new Service1()
-            };
-            ServiceBase.Run(ServicesToRun);
-        }
-
-        //static void Main(string[] args)
+        //static void Main()
         //{
-        //    if (Environment.UserInteractive)
+        //    ServiceBase[] ServicesToRun;
+        //    ServicesToRun = new ServiceBase[]
         //    {
-        //        Service1 service1 = new Service1();
-        //        service1.TestStartupAndStop(args);
-        //    }
-        //    else
-        //    {
-        //        // Put the body of your old Main method here.  
-        //    }
+        //        new Service1()
+        //    };
+        //    ServiceBase.Run(ServicesToRun);
         //}
+
+        static void Main(string[] args)
+        {
+            if (Environment.UserInteractive)
+            {
+                Service1 service1 = new Service1();
+                service1.TestStartupAndStop(args);
+            }
+            else
+            {
+                // Put the body of your old Main method here.  
+            }
+        }
 
     }
 }
