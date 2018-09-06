@@ -1,7 +1,5 @@
 ﻿using GetTwitterLib.Model;
 using MongoDB.Driver;
-using System;
-using System.Configuration;
 
 namespace GetTwitterLib.Infrastructure.Dbs
 {
