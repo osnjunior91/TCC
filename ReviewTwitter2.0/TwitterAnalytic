@@ -1,0 +1,65 @@
+from textblob import TextBlob
+from textblob.classifiers import NaiveBayesClassifier
+import nltk
+import re
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn import metrics
+from sklearn.model_selection import cross_val_predict
+from csvpackage import CreateCSVFile as csv
+from database import DataBase as db
+
+
+def TranslateTwitter(twitter):
+    try:
+        blob = TextBlob(twitter)
+        return blob.translate(to='en-US')
+    except:
+        return ''
+def TwitterAnalyze(twitter):
+    tweetMod = TextBlob(str(twitter))
+    return tweetMod.sentiment_assessments
+
+def ClassificarFrase(frase):
+    feeling = ['positivo','negativo','neutro']
+    print('********************************************************************************************************************\n')
+    print(frase + '\n1 - Positivo\n2 - Negativo \n3 - Neutro\n')
+    f = int(input())
+    print('********************************************************************************************************************\n')
+    return feeling[f-1]
+
+def Training():
+    try:
+        lista = []
+        for twitter in db.GetAllTwitter():
+            result = {}
+            if(db.ExistsTwitterTraining(twitter['_id'])):
+                continue;
+            result['texto'] = (str(re.sub('(?:https?|ftp):\/\/[\n\S]+', '', twitter['texto'], flags=re.IGNORECASE)))
+            result['_id'] = twitter['_id']
+            result['feeling'] = ClassificarFrase(result['texto'])
+            lista.append(result)
+        if(lista.count() > 0):
+            db.SaveTraining(lista)
+    except Exception as e:
+        print('Error: {0}'.format(e))
+
+
+def SentimentAnalysis(list):
+    train_set = list[0:2]
+    test_set = list[3:4]
+    cl = NaiveBayesClassifier(train_set)
+    accuracy = cl.accuracy(test_set)
+    frase = 'Vou votar no Bolsonaro'
+    blob = TextBlob(frase, classifier=cl)
+    print('Esta frase é de caráter:{}'.format(blob.classify()))
+    print('Precisão da previsão:{}'.format(accuracy))
+
+
+def main():
+    SentimentAnalysis(db.GetTrainingTwitter())
+    #Training()
+
+if __name__ == '__main__':
+    main()
