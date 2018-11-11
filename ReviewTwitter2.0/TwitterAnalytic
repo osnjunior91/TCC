@@ -29,6 +29,12 @@ def ClassificarFrase(frase):
     print('********************************************************************************************************************\n')
     return feeling[f-1]
 
+def TrataTexto(texto, twitterSearch):
+    texto = (str(re.sub('(?:https?|ftp):\/\/[\n\S]+', '', texto, flags=re.IGNORECASE)))
+    pattern = re.compile(twitterSearch, re.IGNORECASE)
+    texto = pattern.sub('', texto)
+    return texto
+
 def Training():
     try:
         lista = []
@@ -36,11 +42,10 @@ def Training():
             result = {}
             if(db.ExistsTwitterTraining(twitter['_id'])):
                 continue;
-            result['texto'] = (str(re.sub('(?:https?|ftp):\/\/[\n\S]+', '', twitter['texto'], flags=re.IGNORECASE)))
-            result['_id'] = twitter['_id']
+            result = twitter
+            result['textoAnalise'] = TrataTexto(twitter['texto'], twitter['textSearch'])
             result['feeling'] = ClassificarFrase(result['texto'])
             lista.append(result)
-        if(lista.count() > 0):
             db.SaveTraining(lista)
     except Exception as e:
         print('Error: {0}'.format(e))
@@ -58,8 +63,8 @@ def SentimentAnalysis(list):
 
 
 def main():
-    SentimentAnalysis(db.GetTrainingTwitter())
-    #Training()
+    #SentimentAnalysis(db.GetTrainingTwitter())
+    Training()
 
 if __name__ == '__main__':
     main()

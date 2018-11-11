@@ -32,8 +32,8 @@ def ExistsTwitterTraining(twitterId):
     try:
         db = client['TCC']
         training = db['Training']
-        result = training.find({'_id': twitterId})
-        return result.count() > 0
+        result = training.find({'_id': twitterId}).limit(1).count()
+        return result > 0
     except Exception as e:
         print('Error : {0}'.format(e))
 
@@ -44,7 +44,7 @@ def GetTrainingTwitter():
     y = []
     for x in result:
         var = []
-        var.append(str(re.sub('\\n','', x['texto'],flags=re.IGNORECASE)))
+        var.append(str(re.sub('\\n','', x['textoAnalise'],flags=re.IGNORECASE)))
         var.append(x['feeling'])
         y.append(var)
     return y
