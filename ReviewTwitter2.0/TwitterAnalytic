@@ -21,9 +21,11 @@ def TwitterAnalyze(twitter):
     tweetMod = TextBlob(str(twitter))
     return tweetMod.sentiment_assessments
 
-def ClassificarFrase(frase):
+def ClassificarFrase(frase, texto):
     feeling = ['positivo','negativo','neutro']
     print('********************************************************************************************************************\n')
+    print('O texto pesquisado foi: ' + texto)
+    print('\n********************************************************************************************************************\n')
     print(frase + '\n1 - Positivo\n2 - Negativo \n3 - Neutro\n')
     f = int(input())
     print('********************************************************************************************************************\n')
@@ -44,27 +46,45 @@ def Training():
                 continue;
             result = twitter
             result['textoAnalise'] = TrataTexto(twitter['texto'], twitter['textSearch'])
-            result['feeling'] = ClassificarFrase(result['texto'])
+            result['feeling'] = ClassificarFrase(result['texto'], twitter['textSearch'])
             lista.append(result)
-            db.SaveTraining(lista)
+        db.SaveTraining(lista)
     except Exception as e:
         print('Error: {0}'.format(e))
 
 
 def SentimentAnalysis(list):
-    train_set = list[0:2]
-    test_set = list[3:4]
-    cl = NaiveBayesClassifier(train_set)
-    accuracy = cl.accuracy(test_set)
-    frase = 'Vou votar no Bolsonaro'
-    blob = TextBlob(frase, classifier=cl)
-    print('Esta frase é de caráter:{}'.format(blob.classify()))
-    print('Precisão da previsão:{}'.format(accuracy))
+    try:
+        indice = (len(list) * 80)//100
+        train_set = list[0:indice-1]
+        test_set = list[indice:len(list)-1]
+
+        cl = NaiveBayesClassifier(train_set)
+        accuracy = cl.accuracy(test_set)
+        twitters = db.GetAllTwitterTitulo()
+        lista = []
+        for twitter in twitters:
+            result = {}
+            if (db.ExistsTwitterFeeling(twitter['_id'])):
+                continue;
+            result =twitter
+            frase = twitter['texto']
+            blob = TextBlob(frase, classifier=cl)
+            result['feeling'] = blob.classify()
+            result['accuracy'] = accuracy
+            lista.append(result)
+        db.SaveFeeling(lista)
+    except Exception as e:
+        print('Error: {0}'.format(e))
+        # print('\n********************************************************************************************************************\n')
+        # print(frase)
+        # print('Esta frase é de caráter: {}'.format(blob.classify()))
+        # print('Precisão da previsão: {}'.format(accuracy))
 
 
 def main():
-    #SentimentAnalysis(db.GetTrainingTwitter())
-    Training()
+    SentimentAnalysis(db.GetTrainingTwitter())
+    #Training()
 
 if __name__ == '__main__':
     main()
